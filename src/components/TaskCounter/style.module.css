@@ -1,0 +1,14 @@
+.counter {
+  color: var(--blue);
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.counter span {
+  margin-left: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--gray-100);
+  background-color: var(--gray-400);
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+}
