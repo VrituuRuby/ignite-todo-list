@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clipboardImg from "../../assets/clipboard.svg";
 
 import { v4 as uuid4 } from "uuid";
@@ -17,8 +17,18 @@ interface Task {
 }
 
 export function TaskList(){
-  const [taskList, setTaskList] = useState<Task[]>([]);
+  const [taskList, setTaskList] = useState<Task[]>(() => {
+    const storedTasks = localStorage.getItem("tasks");
+
+    if (!storedTasks) return []
+
+    return JSON.parse(storedTasks);
+  });
   const [taskTitle, setTaskTitle] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(taskList));
+  }, [taskList]);
 
   function handleCreateNewTask(){
     if (!taskTitle) return;
